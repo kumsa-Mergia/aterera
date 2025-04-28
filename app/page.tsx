@@ -3,7 +3,7 @@ import CTASection from "@/components/home/CTASection";
 import DemoSection from "@/components/home/demo-section";
 import HeroSection from "@/components/home/hero-section";
 import HowItWorksSection from "@/components/home/how-it-works-section";
-import PricingSection from "@/components/home/PricingSection ";
+import PricingSection from "@/components/home/PricingSection";
 
 export default function Home() {
   return (
