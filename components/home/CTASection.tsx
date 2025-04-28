@@ -21,7 +21,7 @@ export default function CTASection() {
           <div className="">
             <Button
               size="lg"
-              varian   
+              variant={"link"}   
               className="w-full min-[400px]:w-auto bg-gradient-to-r from-slate-900 to-green-500 hover:from-green-500 hover:to-slate-900 hover:text-white text-white transition-all duration-300 flex items-center"
             >
               <Link
