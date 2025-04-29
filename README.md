@@ -28,10 +28,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deploy on
 
 The easiest way to deploy your Next.js app is to use the
+### Vercel
 [Vercel Platform](https://vercel.com/) or
+### Netlify
 [Netlify Platform](https://www.netlify.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 # Clerk | Authentication and User Management
 
