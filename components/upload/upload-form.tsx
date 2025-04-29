@@ -31,14 +31,15 @@ export default function UploadForm() {
       console.log("upload has begun for", file);
     },
   });
+
   
 
 
-  const handleSubmit =async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("submited");
     const formData = new FormData(e.currentTarget);
-    const file = formData.get("file") as File;
+    const file = formData.get('file') as File;
 
     //validating the fields
     const validatedFields = schema.safeParse({ file });
@@ -49,11 +50,12 @@ export default function UploadForm() {
       console.log(
         validatedFields.error.flatten().fieldErrors.file?.[0] ?? "Invalid file"
       );
+      return;
     }
     //schema with zod
     //upload the file to uploadthing
 
-    const resp = await startUpload([file]) 
+    const resp = await startUpload([file]);
     if (!resp) {
       return;
     }
