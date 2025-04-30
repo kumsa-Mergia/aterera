@@ -14,11 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist]
 
 ## Learn More
 
@@ -32,10 +28,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deploy on
 
 The easiest way to deploy your Next.js app is to use the
+### Vercel
 [Vercel Platform](https://vercel.com/) or
+### Netlify
 [Netlify Platform](https://www.netlify.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 # Clerk | Authentication and User Management
 
