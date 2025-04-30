@@ -2,14 +2,13 @@
 
 import { z } from "zod";
 import UpladFormInput from "./upload-form-input";
-import { createDynamicValidationState } from "next/dist/server/app-render/dynamic-rendering";
 import { useUploadThing } from "@/utils/uploadthing";
 
 const schema = z.object({
   file: z
     .instanceof(File, { message: "Invalid file" })
     .refine(
-      (file) => file.size <= 24 * 1024 * 1024,
+      (file) => file.size <= 20 * 1024 * 1024,
       "File size must be less than 20MB"
     )
     .refine(
@@ -19,18 +18,33 @@ const schema = z.object({
 });
 
 export default function UploadForm() {
+  
 
+
+  // const { startUpload, routeConfig } = useUploadThing('pdfUploader', {
+  //   onClientUploadComplete: () => {
+  //     console.log("uploaded successfully!");
+  //   },
+  //   onUploadError: (err) => {
+  //     console.error("error occurred while uploading", err);
+  //   },
+  //   onUploadBegin: ({ file }) => {
+  //     console.log("upload has begun for", file);
+  //   },
+  // });
   const { startUpload, routeConfig } = useUploadThing('pdfUploader', {
-    onClientUploadComplete: () => {
+    onClientUploadComplete: (res) => {
+      // Do something with the response
+      console.log("Files: ", res);
       console.log("uploaded successfully!");
     },
-    onUploadError: (err) => {
-      console.error("error occurred while uploading", err);
-    },
-    onUploadBegin: ({ file }) => {
-      console.log("upload has begun for", file);
+    onUploadError: (error: Error) => {
+      // Do something with the error.
+      console.log(`ERROR! ${error.message}`);
     },
   });
+
+  
 
   
 
@@ -64,6 +78,8 @@ export default function UploadForm() {
     //save the summary to the database
     //redirect to the [id] summary page
   };
+
+  
   return (
     <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
       <UpladFormInput onSubmit={handleSubmit} />
