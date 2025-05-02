@@ -6,6 +6,7 @@ interface UpladFormInputProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
+
 export default function UpladFormInput({ onSubmit }: UpladFormInputProps) {
   return (
     <form className="flex flex-col gap-6 " onSubmit={onSubmit}>

@@ -3,6 +3,7 @@
 import { z } from "zod";
 import UpladFormInput from "./upload-form-input";
 import { useUploadThing } from "@/utils/uploadthing";
+import { toast } from "sonner";
 
 const schema = z.object({
   file: z
@@ -18,68 +19,59 @@ const schema = z.object({
 });
 
 export default function UploadForm() {
-  
-
-
-  // const { startUpload, routeConfig } = useUploadThing('pdfUploader', {
-  //   onClientUploadComplete: () => {
-  //     console.log("uploaded successfully!");
-  //   },
-  //   onUploadError: (err) => {
-  //     console.error("error occurred while uploading", err);
-  //   },
-  //   onUploadBegin: ({ file }) => {
-  //     console.log("upload has begun for", file);
-  //   },
-  // });
-  const { startUpload, routeConfig } = useUploadThing('pdfUploader', {
+  const { startUpload } = useUploadThing("pdfUploader", {
     onClientUploadComplete: (res) => {
-      // Do something with the response
       console.log("Files: ", res);
-      console.log("uploaded successfully!");
+      toast.success("Uploaded successfully!");
+     
     },
+
     onUploadError: (error: Error) => {
-      // Do something with the error.
-      console.log(`ERROR! ${error.message}`);
+      toast.error(
+        <div>
+          <p className="font-bold">Upload Error</p>
+          <p className="text-sm">{error.message}</p>
+        </div>
+      );
     },
   });
-
-  
-
-  
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submited");
     const formData = new FormData(e.currentTarget);
-    const file = formData.get('file') as File;
+    const file = formData.get("file") as File;
 
-    //validating the fields
     const validatedFields = schema.safeParse({ file });
 
-    console.log(validatedFields);
-
     if (!validatedFields.success) {
-      console.log(
-        validatedFields.error.flatten().fieldErrors.file?.[0] ?? "Invalid file"
+      toast.error(
+        <div>
+          <p className="font-bold">Invalid File</p>
+          <p className="text-sm">
+            {validatedFields.error.flatten().fieldErrors.file?.[0] ?? "Invalid file"}
+          </p>
+        </div>
       );
       return;
     }
-    //schema with zod
-    //upload the file to uploadthing
+
+    toast("Uploading PDF...");
 
     const resp = await startUpload([file]);
     if (!resp) {
+      toast.error(
+        <div>
+          <p className="font-bold">Something went wrong</p>
+          <p className="text-sm">Please use a different file</p>
+        </div>
+      );
       return;
     }
-    //parse the pdf using lang chain
-    //summarize the PDF using AI
-    //save the summary to the database
-    //redirect to the [id] summary page
+
+    toast("Processing PDF... Hang tight! Our AI is reading your document.");
   };
 
-  
   return (
     <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
       <UpladFormInput onSubmit={handleSubmit} />
