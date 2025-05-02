@@ -47,6 +47,7 @@ Aterera is an innovative web application that generates clear and structured PDF
 
 ```bash
 git clone git@github.com:kumsa-Mergia/aterera.git
+```
 cd aterera
 
 ## Deploy on
