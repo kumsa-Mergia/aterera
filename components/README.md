@@ -1,7 +1,3 @@
-Here’s a polished and professional version of your `README.md`, with improved grammar, structure, and clarity:
-
----
-
 # 🌞 Cross-Country Solar Potential Comparison Dashboard
 
 This **Streamlit dashboard** provides a visual and statistical comparison of solar energy potential across **Benin**, **Sierra Leone**, and **Togo**. The app utilizes cleaned datasets to analyze and compare key solar metrics, helping users identify the most promising regions for solar energy development.
@@ -62,5 +58,3 @@ pip install -r requirements.txt
 Feedback, feature requests, and contributions are welcome! Feel free to open an issue or submit a pull request.
 
 ---
-
-Let me know if you’d like to add a **live demo link**, **license section**, or **data source credits**.
